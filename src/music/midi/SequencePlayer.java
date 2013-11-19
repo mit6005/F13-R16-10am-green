@@ -196,7 +196,8 @@ public class SequencePlayer {
 
         // create a new player, with 120 beats (i.e. quarter note) per
         // minute, with 2 tick per quarter note
-        player = new SequencePlayer(120, 2);
+        try {
+            player = new SequencePlayer(120, 2);
 
         final Pitch C = new Pitch('C');
         int start = 1;
@@ -215,7 +216,7 @@ public class SequencePlayer {
                 new Pitch('F'),
                 new Pitch('E'),
                 new Pitch('D'),
-                new Pitch('A'),
+                new Pitch('C'),
         }) {
             player.addNote(Instrument.PIANO, p.difference(C) + 60, start++, 1);
         }
@@ -235,5 +236,9 @@ public class SequencePlayer {
          * System.exit(0).
          */
         // System.exit(0);
+        } catch (MidiUnavailableException | InvalidMidiDataException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
